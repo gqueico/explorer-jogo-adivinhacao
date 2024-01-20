@@ -7,11 +7,7 @@ let xAttempts = 1
 
 btnTry.addEventListener('click', handleTryClick)
 btnReset.addEventListener('click', handleResetClick)
-document.addEventListener('keydown', function(event) {
-  if(event.key == 'Enter' && screen1.classList.contains("hide")) {
-    handleResetClick()
-  }
-})
+document.addEventListener('keydown', handleResetKeydown)
 
 function handleTryClick(event) {
   event.preventDefault()
@@ -23,8 +19,15 @@ function handleTryClick(event) {
     screen2.querySelector("h2").innerText = `Acertou em ${xAttempts} tentativas!`
   }
 
-  inputNumber.value = ""
-  xAttempts++
+  if(inputNumber.value != "") {
+    inputNumber.value = ""
+    xAttempts++
+  }
+}
+
+function toggleScreen() {
+  screen1.classList.toggle("hide")
+  screen2.classList.toggle("hide")
 }
 
 function handleResetClick() {
@@ -33,7 +36,8 @@ function handleResetClick() {
   xAttempts = 1
 }
 
-function toggleScreen() {
-  screen1.classList.toggle("hide")
-  screen2.classList.toggle("hide")
+function handleResetKeydown(event) {
+  if(event.key == 'Enter' && screen1.classList.contains("hide")) {
+    handleResetClick()
+  }
 }
