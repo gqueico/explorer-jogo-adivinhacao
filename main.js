@@ -40,4 +40,4 @@ function handleResetKeydown(event) {
   if(event.key == 'Enter' && screen1.classList.contains("hide")) {
     handleResetClick()
   }
-}
+}index.html
